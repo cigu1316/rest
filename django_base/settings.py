@@ -43,7 +43,7 @@ THIRD_APPS = [
     "rest_framework",
 ]
 
-MY_APPS = [
+MY_APPS = [ 'courses',
     
     
 ]
