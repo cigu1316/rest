@@ -13,4 +13,3 @@ class CustomUserAdmin(UserAdmin):
         (("Custom fields"), {"fields": ("user_type",)}),   
     )
 admin.site.register(User,CustomUserAdmin)
-pass
