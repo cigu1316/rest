@@ -9,6 +9,8 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
 
+from users.models import UserDocumentation
+
 
 class EmailVerification(APIView, ConfirmEmailView):
 
@@ -36,6 +38,9 @@ class CustomRegisterView(RegisterView):
         user.user_type = request.data.get('user_type', 'buyer')
         user.save()
 
+        if user.is_seller:
+            UserDocumentation.objects.create(user=user)
+
         if data:
             response = Response(
                 data,
@@ -45,4 +50,4 @@ class CustomRegisterView(RegisterView):
         else:
             response = Response(status=status.HTTP_204_NO_CONTENT, headers=headers)
 
-        return 
+        return response
